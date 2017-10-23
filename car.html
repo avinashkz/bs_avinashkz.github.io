@@ -1,0 +1,228 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <title>
+      
+        Virtual Self Driving Car
+      
+    </title>
+
+    
+      <link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
+      <link href="assets/css/toolkit-minimal.css" rel="stylesheet">
+      <link href="assets/css/application-minimal.css" rel="stylesheet">
+    
+
+    
+      <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/css/projects.css" rel="stylesheet">
+
+
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicon/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="images/favicon/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png" />
+        <link rel="icon" type="image/png" href="images/favicon/favicon-196x196.png" sizes="196x196" />
+        <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="images/favicon/favicon-128.png" sizes="128x128" />
+        <meta name="application-name" content="&nbsp;"/>
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+        <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+        <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+        <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+        <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+
+    <style>
+      /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+      /* this chunk of css is not part of the toolkit :) */
+      /* …curses ios, etc… */
+      @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+        body {
+          width: 1px;
+          min-width: 100%;
+          *width: 100%;
+        }
+        #stage {
+          height: 1px;
+          overflow: auto;
+          min-height: 100vh;
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+    </style>
+  </head>
+
+
+<body>
+  <div class="stage-shelf hidden" id="sidebar">
+  <ul class="nav nav-bordered nav-stacked">
+    <li>
+      <a href="index.html">Home</a>
+    </li>
+      <li>
+      <a href="about.html">About Me</a>
+    </li>
+      <li class="nav-divider"></li>
+    <li class="nav-header">Projects</li>
+    <li>
+      <a href="robot.html">Gesture Controlled Wall Climbing Robot</a>
+    </li>
+    <li class="active">
+      <a href="car.html" >Virtual Self Driving Car</a>
+    </li>
+    <li>
+      <a href="doom.html">Powering AI to Play Doom in OpenAI Gym</a>
+    </li>
+    <li class="nav-divider"></li>
+    <li class="nav-header">Blogs</li>
+    <li>
+      <a href="seaborn.html">Seaborn</a>
+    </li>
+    <li>
+      <a href="claytronics.html">Claytronics</a>
+    </li>
+  </ul>
+</div>
+
+
+  <div class="stage" id="app-stage">
+
+    <button class="btn btn-link stage-toggle" data-target="#app-stage" data-toggle="stage">
+      <span class="icon icon-menu stage-toggle-icon"></span>
+      Menu
+    </button>
+
+    
+      <div class="docs-header" id="content">
+        <div class="container">
+          <h1>Virtual Self Driving Car</h1>
+          
+        </div>
+      </div>
+      <div class="container docs-content">
+        
+<h1 id="contents">Contents</h1>
+
+<ul id="markdown-toc" style="font-size:100%;">
+  <li><a href="#contents" id="markdown-toc-contents">Contents</a></li>
+    <li><a href="#toc_0" id="markdown-toc-intro">Introduction</a></li>
+  <li><a href="#toc_1" id="markdown-toc-intro">Test Data</a></li>
+  <li><a href="#toc_2" id="markdown-toc-whats-included">Neural Network</a>    
+  </li>
+  <li><a href="#toc_3" id="markdown-toc-custom-builds">Training the model</a></li>
+  <li><a href="#toc_6" id="markdown-toc-basic-template">References</a></li>
+</ul>
+
+<h2 id="toc_1">Introduction</h2>
+          
+<p>This project was inspired by the article, <a href="http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf">End to End Learning for Self-Driving Cars</a>, published by Nvidia. The project focuses on the implementation of convolutional neural network using Keras and Python for the autonomous functioning of the car within the game engine developed by Unity and Udacity.</p>
+
+<h2 id="toc_1">Test Data</h2>
+
+<div class = "middle"> 
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/oXBJZxxpgWI" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p>The game engine is initially run in training mode to get the data required to train the model. The images obtained are stored as input- X and the steering value is stored as output-Y.  The acquired data is split into training data and testing data using Sklearn.   80% of the data is used for training the model, and the remaining 20% is used to test the model.</p>
+
+<h2 id="toc_2">Neural Network</h2>
+
+<p>For building the neural network, I used <code>Keras</code> which is a library built on top of the machine learning library, <code>TensorFlow</code>. Using Keras a linear stack of neural network layers is built in a Sequential container. The first layer employed is a <code>Normalization layer</code> to scale the pixel inputs between -1 and 1. The Normalization layer is used so that the Gradient descent will converge faster when inputs are scaled and normalized into the same range.</p>
+                                    
+                                    <p>For building the neural network, I used <code>Keras</code>.  It is a library built on top of <code>TensorFlow</code>. The linear stack of neural network layers is built in a Sequential container. The first layer employed is a <code>Normalization layer</code> to scale the pixel inputs between -1 and 1. The Normalization layer is used so that the Gradient descent will converge faster when inputs are scaled and normalized into the same range.</p>                   
+
+<p>The normalized images were then fed into a sequence of <code>Convolutional Neural Networks</code> for feature engineering. The first convolutional layer uses a 5x5 kernel which strides over the image by 2x2 to generate 24 feature images. Then, these output images were fed into next convolutional layer to generate 36 feature maps and so on. For all the layers <code>ELU activation function</code> was used, which alleviates the <code>Vanishing Gradient problem</code>. The initial convolutional layers obtain high-level features and the more complex features are acquired through the succeeding layers.The images obtained from the convolutional layers were passed through a <code>Dropout layer</code>. The purpose of the dropout layer is to set random set of activations to zero. This forces the neural network to learn and classify even if some activations are dropped. It prevents the model from <code>overfitting</code> the test data and can aid in better classification of the test images.  </p>
+
+<p>In the next stage, the images are propagated through a flattening layer before it is fed into the <code>Fully Connected layers</code>. These Fully Connected layers get progressively smaller from 100 neurons in the first layer to 1 neuron in the final layer. The layers squash the high dimensional tensors to obtain a one-dimensional value for steering. </p>
+
+<h2 id="toc_3">Training the model</h2>
+
+<p>The steering value computed by the neural network, along with the steering value obtained from the game engine was used to calculate the loss using <code>Mean Square Error Method</code>. To minimise the calculated loss, the errors were back-propagated into the neural network and the weights were updated using the <code>Adam Optimizer</code>. This whole process is summarised in the image below.</p>
+
+<p><img src="images/car/training.png" width="100%"/></p>
+
+<h5 id="toc_4">Figure 1 :- Training the model</h5>
+
+<p>The <code>fit generator</code> function was used for real-time data augmentation of images in CPU while training the model on GPU. In other words, batches of data were generated from the training data parallelly while the model was being trained.  For training the model, the required parameters such as learning rate, the number of epochs, etc. were specified using argparse in the main function. These parameters can be easily changed while running the program in the terminal.</p>
+
+<p><img src="images/car/inference.png" width="100%"/></p>
+
+<h5 id="toc_5">Figure 2 :- Computing Steering</h5>
+
+<p>Once the model was trained, a client-server program was written which interacted with the game engine.  To connect with the game engine, <code>socketIO</code> and <code>flask</code> web framework were used.  Once the connection was established, images from the center camera were taken and fed to the neural network to compute the steering (figure 2). The degree of steering along with the throttle of the car transmits back to the server as packets. Additionally, the car was programmed to maintain its speed between the limits of 20 and 25 mph by varying the throttle, the equation for which was obtained through a trial and error method.</p>
+
+<p>The result is the neural network powered autonomous car you see in the video below.</p>
+
+<div class = "middle"> 
+<iframe width="100%" height="315"  src="https://www.youtube.com/embed/3F0C-YvQMyU" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<h2 id="toc_6">References</h2>
+
+<div><pre><code class="language-none">1. http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf
+
+2. https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner&#39;s-Guide-To-Understanding-Convolutional-Neural-Networks-Part-2/
+
+3. https://www.youtube.com/watch?v=EaY5QiZwSP4</code></pre></div>
+                                    
+                                    <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://avinashkz.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ 
+           
+        <a class="docs-top" style="display: none" href="#">Back to top</a>
+      </div>
+    
+
+  </div>
+    
+    <footer id="footer" class="footer">
+        <div class="container text-center">
+            <div class="row copyright">
+                <div class="col-lg-12">
+                    <p class="small">&copy; Avinash Prabhakaran</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/toolkit.js"></script>
+    <script src="assets/js/application.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <title>
+      
+        Powering AI to Play Doom In OpenAI Gym
+      
+    </title>
+
+    
+      <link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
+      <link href="assets/css/toolkit-minimal.css" rel="stylesheet">
+      <link href="assets/css/application-minimal.css" rel="stylesheet">
+    
+
+    
+      <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/css/projects.css" rel="stylesheet">
+
+
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicon/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="images/favicon/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png" />
+        <link rel="icon" type="image/png" href="images/favicon/favicon-196x196.png" sizes="196x196" />
+        <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="images/favicon/favicon-128.png" sizes="128x128" />
+        <meta name="application-name" content="&nbsp;"/>
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+        <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+        <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+        <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+        <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+
+    <style>
+      /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+      /* this chunk of css is not part of the toolkit :) */
+      /* …curses ios, etc… */
+      @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+        body {
+          width: 1px;
+          min-width: 100%;
+          *width: 100%;
+        }
+        #stage {
+          height: 1px;
+          overflow: auto;
+          min-height: 100vh;
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+    </style>
+  </head>
+
+
+<body>
+  <div class="stage-shelf hidden" id="sidebar">
+  <ul class="nav nav-bordered nav-stacked">
+    <li>
+      <a href="index.html">Home</a>
+    </li>
+      <li>
+      <a href="about.html">About Me</a>
+    </li>
+      <li class="nav-divider"></li>
+    <li class="nav-header">Projects</li>
+    <li>
+      <a href="robot.html">Gesture Controlled Wall Climbing Robot</a>
+    </li>
+    <li>
+      <a href="car.html" >Virtual Self Driving Car</a>
+    </li>
+    <li class="active">
+      <a href="doom.html">Powering AI to Play Doom in OpenAI Gym</a>
+    </li>
+    <li class="nav-divider"></li>
+    <li class="nav-header">Blogs</li>
+    <li>
+      <a href="seaborn.html">Seaborn</a>
+    </li>
+    <li>
+      <a href="claytronics.html">Claytronics</a>
+    </li>
+  </ul>
+</div>
+
+
+  <div class="stage" id="app-stage">
+
+    <button class="btn btn-link stage-toggle" data-target="#app-stage" data-toggle="stage">
+      <span class="icon icon-menu stage-toggle-icon"></span>
+      Menu
+    </button>
+
+    
+      <div class="docs-header" id="content">
+        <div class="container">
+          <h1>Powering AI to Play Doom In OpenAI Gym</h1>
+          
+        </div>
+      </div>
+      <div class="container docs-content">
+        
+<h1 id="contents">Contents</h1>
+
+<ul id="markdown-toc" style="font-size:100%;">
+  <li><a href="#toc_0" id="markdown-toc-contents">Introduction</a></li>
+  <li><a href="#toc_1" id="markdown-toc-intro">Test Data</a></li>
+  <li><a href="#toc_2" id="markdown-toc-whats-included">Eligibility Trace</a>    
+  </li>
+  <li><a href="#toc_3" id="markdown-toc-custom-builds">Neural Network</a></li>
+  <li><a href="#toc_4" id="markdown-toc-basic-template">Training</a></li>
+  <li><a href="#toc_5" id="markdown-toc-utilities">References</a>
+</ul>
+
+          
+ 
+                                    <h2 id="toc_0">Introduction</h2>
+
+<p>The project was done as part of the online course <a href="https://www.udemy.com/artificial-intelligence-az/">Artificial Intelligence A-Z</a>. Here, I have implemented Deep Convolutional Q-Learning to create a model which will play Doom in OpenAI Gym.</p>
+
+<div class = "middle"> 
+<iframe width="80%" height="315" style=""src="https://www.youtube.com/embed/X_riUKeWabc" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<h2 id="toc_1">Test Data</h2>
+
+<p>The images of AI playing Doom in AI GYM are obtained from the API provided by the OpenAI Gym.  The images acquired are <code>preprocessed</code> and are stored in a large array to implement <code>Experience Reply</code>. Experience Replay is randomly sampling the large pool The large pool of memory is randomly sampled and the images are fed into the neural network. The advantage of using experience replay is that it helps the network for better convergence. Another advantage is that when sampling from a large pool, the network will not forget previous learnings. This feature can also be used when the model is trained to play different levels of the game. Hence, the network will not forget how to play the first level after playing the next few levels.</p>
+
+<h2 id="toc_2">Eligibility Trace</h2>
+
+<p>Instead of backpropogating loss after every step to update the weights I have implemented <code>Eligibility Trace</code>. Eligibility trace is the process of evaluating the cumulative reward or loss after n-steps instead of a single step. It obtains the steps which are responsible for the negative reward, and the algorithm also keeps track of which step needs to be updated based on that reward. For this project, I have implemented a ten step eligibility trace. So, the model will calculate the cumulative reward/loss after ten steps.</p>
+
+<h2 id="toc_3">Neural Network</h2>
+
+<p>The model will be using three convolutional layers and then two fully connected layers with all the layers using <code>ReLU activation function</code> to alleviate the <code>Vanishing gradient problem</code> associated with many of the other activation functions. The program is structured such that the randomly sampled images are fed into the convolutional neural network.  The first two convolutional layers are designed to generate 32 feature images each as they are used for acquiring the high-level features of the images. The feature images attained are then fed into the third convolutional layer which generates 64 feature images. The third layer generates a greater number of feature images as its objective is to obtain more complex features of the images.  </p>
+
+<p>The feature maps from the final convolutional layer are then fed into a layer fully connected network. Here two fully connected layers are used, and the number of output neurons of the second layer is equal to the number of input actions available for the game.</p>
+
+<p>The output is then fed into a <code>Softmax function</code> which will convert the Q values into probabilities and select an action accordingly. The softmax function is also given a <code>temperature variable</code> which decides the amount of exploration that will be done. The action selected by the softmax function is implemented, and the reward associated with the step is stored in an array. The loss is calculated at the end of ten steps using <code>Mean Squared Error Method</code>, and the loss is <code>back-propagated</code> into the neural network and the weights are updated using the <code>Adam Optimizer</code>. Thus, the steps which are responsible for the losses are identified and replaced by the neural network.</p>
+
+<h2 id="toc_4">Training</h2>
+
+<p>The neural network is trained in <code>200 epochs</code> of <code>10 steps</code> each. The program is set to terminate when the AI acquires the average reward of 1500. However, an average reward of greater than 1000 would be sufficient for the AI to beat the game. But the AI can still update itself so that it can complete the game more efficiently.</p>
+                                    
+<p>The video provided above shows the AI's first attempt and the last attempt at beating the game. As you can see in the 5th trial the AI successfully beats the game. We can also see all the five attempts made by the AI in the video below to get an idea of how quickly the AI is capable of learning.</p>
+
+<div class = "middle"> 
+<iframe width="80%" height="315" src="https://www.youtube.com/embed/t76Eq51eNy8" frameborder="0" allowfullscreen></iframe>
+</div>
+          
+          
+<h2 id="toc_5">References</h2>
+          
+<div><pre><code class="language-none">[1]. https://www.udemy.com/artificial-intelligence-az/
+
+[2]. https://gym.openai.com/envs/DoomCorridor-v0/
+</code></pre></div>
+          
+         
+          
+                                    <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://avinashkz.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ 
+           
+        <a class="docs-top" style="display: none" href="#">Back to top</a>
+      </div>
+    
+
+  </div>
+    
+    <footer id="footer" class="footer">
+        <div class="container text-center">
+            <div class="row copyright">
+                <div class="col-lg-12">
+                    <p class="small">&copy; Avinash Prabhakaran</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/toolkit.js"></script>
+    <script src="assets/js/application.js"></script>
+  </body>
+</html>
+

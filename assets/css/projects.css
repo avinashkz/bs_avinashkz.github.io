@@ -1,0 +1,15 @@
+
+p  {
+    text-align: justify;
+}
+
+.shift {
+    position: relative;
+    left: 6%;
+}
+
+.middle {
+    text-align:center;
+    width:100%;
+    color: black;
+}
